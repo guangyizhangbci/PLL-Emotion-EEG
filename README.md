@@ -1,1 +1,1 @@
-# PLL
+# Partial Label Learning
