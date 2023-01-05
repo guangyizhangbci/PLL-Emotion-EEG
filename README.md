@@ -12,7 +12,7 @@ Please follow the steps below in order to be able to train our models:
 1 - Install Requirements
 
 ```
-pip3 install -r ./requirements.txt (need to add)
+pip3 install -r ./requirements.txt
 ```
 
 2 - Download the extracted differential entropy features and labels provided by the dataset. Follow the [data loader](./load_data.py) code while strictly following the official dataset description.
