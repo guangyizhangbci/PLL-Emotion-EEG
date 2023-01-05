@@ -3,8 +3,8 @@ import pickle
 import os
 
 
-load_path = '/media/patrick/DATA/SEED_V/EEG_DE_features/'
-save_path = '/media/patrick/DATA/SEED_V/EEG/'
+load_path = './DATA/SEED_V/EEG_DE_features/'
+save_path = './DATA/SEED_V/EEG/'
 
 
 data_npz = np.load(os.path.join(load_path, '1_123.npz'))
