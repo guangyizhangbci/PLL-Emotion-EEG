@@ -15,10 +15,9 @@ Please follow the steps below in order to be able to train our models:
 pip3 install -r ./requirements.txt (need to add)
 ```
 
-2 - Download the extracted differential entropy features and labels provided by the dataset. Follow the [data processing and feature extraction](./load_data.py) code while strictly following the official dataset description.
+2 - Download the extracted differential entropy features and labels provided by the dataset. Follow the [data loader](./load_data.py) code while strictly following the official dataset description.
 
 
-3 - Save the extracted features and labels accordingly (e.g., './EEG/de_1_1.npy' and './EEG/label_1_1.npy'). Move EEG features and corresponding labels to the address shown in [here](./main.py#L37-L38). 
 
 
 4 - Usage:
