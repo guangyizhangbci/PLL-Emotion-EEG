@@ -26,12 +26,9 @@ pip3 install -r ./requirements.txt
 2 - Download the extracted differential entropy features and labels provided by the dataset. Follow the [data loader](./load_data.py) code while strictly following the official dataset description.
 
 
+3 - Usage:
 
-
-4 - Usage:
-
-
-5. bash file
+We also provide bash file for runing all the partial label learning experiments.
 
  ## Document Description
  
