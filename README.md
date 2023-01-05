@@ -10,7 +10,7 @@ This is the implementation of [Partial Label Learning for Emotion Recognition fr
 
 
 
-This repository contains the source code of our paper, using a large publicly avaiable dataset, namely [SEED-V](https://bcmi.sjtu.edu.cn/home/seed/seed-v.html): 16 participants were involved in experiments with videos as emotion stimuli (five emotions: happy/sad/disgust/neutral/fear). 62 EEG recordings were collected with a sampling frequency of 1000Hz.
+This repository contains the source code of our paper, using a large publicly avaiable dataset, [SEED-V](https://bcmi.sjtu.edu.cn/home/seed/seed-v.html). 16 participants were involved in experiments with videos as emotion stimuli (five emotions: happy/sad/disgust/neutral/fear). 62 EEG recordings were collected with a sampling frequency of 1000Hz.
 
 
 ## Prerequisites
