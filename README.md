@@ -2,7 +2,7 @@
 This is the implementation of [Partial Label Learning for Emotion Recognition from EEG](arxiv address) in PyTorch (Version 1.11.0).
 <p align="center">
   <img 
-    width="700"
+    width="600"
     height="300"
     src="/framework.jpg"
   >
