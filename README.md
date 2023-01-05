@@ -1,5 +1,13 @@
 # Partial Label Learning for Emotion Recognition from EEG
 This is the implementation of [Partial Label Learning for Emotion Recognition from EEG](arxiv address) in PyTorch (Version 1.11.0).
+<p align="center">
+  <img 
+    width="700"
+    height="300"
+    src="/framework.jpg"
+  >
+</p>
+
 
 
 This repository contains the source code of our paper, using a large publicly avaiable dataset, namely [SEED-V](https://bcmi.sjtu.edu.cn/home/seed/seed-v.html): 16 participants were involved in experiments with videos as emotion stimuli (five emotions: happy/sad/disgust/neutral/fear). 62 EEG recordings were collected with a sampling frequency of 1000Hz.
