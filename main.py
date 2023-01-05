@@ -157,7 +157,7 @@ if __name__ == '__main__':
 
     # results save path, depends on method and the arguments in parsing
 
-    main_path = '/home/patrick/Desktop/temp/SEED_V_result/PLL/main/' + args.method + '/scheduler_{}'.format(args.use_scheduler) + '/optimizer_{}/lr_{}/'.format(args.optimizer, args.lr)
+    main_path = './SEED_V_result/PLL/main/' + args.method + '/scheduler_{}'.format(args.use_scheduler) + '/optimizer_{}/lr_{}/'.format(args.optimizer, args.lr)
 
     directory = main_path
 
