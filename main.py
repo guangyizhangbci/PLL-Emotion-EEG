@@ -25,8 +25,8 @@ from train_func import *
 from utils import *
 from backbone_models import conv_EEG, conv_EEG_pico, PiCO
 
-data_addr  = '/media/patrick/DATA/SEED_V/EEG/de_{}_{}.npy'      # subject_No, Fold_No
-label_addr = '/media/patrick/DATA/SEED_V/EEG/label_{}_{}.npy'   # subject_No, Fold_No
+data_addr  = './DATA/SEED_V/EEG/de_{}_{}.npy'      # subject_No, Fold_No
+label_addr = './DATA/SEED_V/EEG/label_{}_{}.npy'   # subject_No, Fold_No
 
 
 import parsing
