@@ -3,7 +3,7 @@ This is the implementation of [Partial Label Learning for Emotion Recognition fr
 <p align="center">
   <img 
     width="900"
-    height="300"
+    height="350"
     src="/framework.jpg"
   >
 </p>
