@@ -13,7 +13,7 @@ then
     wait
   done
 
-elif [[ $method_name == "PRODEN" ]] || [[ $method_name == "CAVL" ]]
+elif [[ $method_name == "PRODEN" ]] || [[ $method_name == "CAVL" ]] || [[ $method_name == "CR" ]]
 then
   for i in 1 2 3 4 5
   do
@@ -45,20 +45,6 @@ then
   done
 
 
-elif [[ $method_name == "CR" ]]
-then
-  for i in 1 2 3 4 5
-  do
-    if [[ $confidence_boolean == true ]]
-    then
-      python3 ./SEED_V_code/PLL/main.py --optimizer 'sgd' --lr 0.01 --partial-type $partial_type_name --method $method_name --use-scheduler --use-confidence --c-weight 1 --c-weight-w 1 --c-weight-s 1 --run-idx $i
-      wait
-    else
-      python3 ./SEED_V_code/PLL/main.py --optimizer 'sgd' --lr 0.01 --partial-type $partial_type_name --method $method_name --use-scheduler --c-weight 1 --c-weight-w 1 --c-weight-s 1 --run-idx $i
-      wait
-    fi
-  done
-
 
 elif [[ $method_name == "PiCO" ]]
 then
@@ -88,13 +74,6 @@ else
   exit
 
 fi
-
-
-
-
-
-
-
 
 
 
