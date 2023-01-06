@@ -1,5 +1,5 @@
 """
-Created on Sat May 14 15:01:14 2022
+Created on Thu May 14 15:32:30 2022
 
 @author: patrick
 """
@@ -9,6 +9,7 @@ import math
 import random
 from math import log, e
 from tqdm import tqdm
+from sklearn.model_selection import KFold
 from scipy.stats import *
 import copy
 import time
@@ -17,16 +18,24 @@ import torch.backends.cudnn as cudnn
 import torch.optim as optim
 import torch.utils.data
 from torch.autograd import Variable
+import matplotlib.animation as animation
+from torch.autograd import Variable
 import os,sys,inspect
-from sklearn.model_selection import train_test_split, LeaveOneOut, KFold
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import LeaveOneOut, KFold
 from sklearn.preprocessing import MinMaxScaler
+import utils
+import math
 import argparse
 from train_func import *
 from utils import *
-from backbone_models import conv_EEG, conv_EEG_pico, PiCO
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(0,parentdir)
+from simple_autoencoder import conv_EEG, conv_EEG_pico, PiCO
 
-data_addr  = './DATA/SEED_V/EEG/de_{}_{}.npy'      # subject_No, Fold_No
-label_addr = './DATA/SEED_V/EEG/label_{}_{}.npy'   # subject_No, Fold_No
+data_addr  = './SEED_V/EEG/de_{}_{}.npy'      # subject_No, Fold_No
+label_addr = './SEED_V/EEG/label_{}_{}.npy'   # subject_No, Fold_No
 
 
 import parsing
@@ -142,6 +151,8 @@ def train(Net, train_dataset, test_dataset):
         test_loss_epoch[epoch] = Average(test_loss_batch)
         test_acc_epoch[epoch]  = Average(test_acc_batch)
 
+        # print ('epoch {}: train_loss={}, test_loss={}, test_acc={}'.format(epoch+1, train_loss_epoch[epoch], test_loss_epoch[epoch], test_acc_epoch[epoch]))
+
 
     best_test_acc = test_acc_epoch[np.argmin(train_loss_epoch)]
 
@@ -152,12 +163,15 @@ def train(Net, train_dataset, test_dataset):
 
 if __name__ == '__main__':
 
-
+    cudnn.benchmark = True
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-
-    # results save path, depends on method and the arguments in parsing
+    random.seed(0)
+    torch.manual_seed(0)
+    np.random.seed(0)
+    cudnn.deterministic = True
 
     main_path = './SEED_V_result/PLL/main/' + args.method + '/scheduler_{}'.format(args.use_scheduler) + '/optimizer_{}/lr_{}/'.format(args.optimizer, args.lr)
+
 
     directory = main_path
 
@@ -168,7 +182,7 @@ if __name__ == '__main__':
     elif args.method == 'LW':
         directory = main_path + 'confidence_{}/'.format(args.use_confidence) + '{}/'.format(args.loss) + 'beta_{}/'.format(args.beta)
     elif args.method == 'CR':
-        directory = main_path + 'confidence_{}/'.format(args.use_confidence) + 'weight_{}_{}_{}/'.format(c_weight, c_weight_w, c_weight_s)
+        directory = main_path + 'confidence_{}/'.format(args.use_confidence) + 'weight_{}_{}_{}/'.format(args.c_weight, args.c_weight_w, args.c_weight_s)
     elif args.method == 'PiCO':
         directory = main_path + 'confidence_{}/'.format(args.use_confidence) + 'contrast_weight_{}/'.format(args.gamma)
     else:
@@ -199,8 +213,6 @@ if __name__ == '__main__':
     np.random.seed(seed)
 
     cudnn.deterministic = True
-    cudnn.benchmark = True
-
 
     if args.partial_type=='uniform':
         prob_arr =  [0.20, 0.40, 0.60, 0.80, 0.9, 0.95]
@@ -224,8 +236,6 @@ if __name__ == '__main__':
 
         for subject_num in range(1, 17):
 
-            # data and labels load
-
             X1 = np.load(data_addr.format(subject_num, 1))
             X2 = np.load(data_addr.format(subject_num, 2))
             X3 = np.load(data_addr.format(subject_num, 3))
@@ -238,11 +248,9 @@ if __name__ == '__main__':
 
             Y  = np.vstack((Y1, Y2, Y3))
 
-            # data normalization
-
             scaler=MinMaxScaler()
             X = scaler.fit_transform(X)
-
+            # print(np.min(X), np.max(X))
 
             for fold_num in range(3):
 
@@ -258,8 +266,9 @@ if __name__ == '__main__':
                 fold_1_index = [i for i in range(0, len(X1))]
                 fold_2_index = [i for i in range(len(X1), len(X1)+len(X2))]
                 fold_3_index = [i for i in range(len(X1)+len(X2), len(X1)+len(X2)+len(X3))]
-                
-                # three-fold cross-validaiton based on pre-defined folds
+
+                # print(fold_1_index, fold_2_index, fold_3_index)
+
                 if fold_num ==0:
                     train_index, test_index = fold_1_index + fold_2_index, fold_3_index
                 elif fold_num ==1:
@@ -269,22 +278,25 @@ if __name__ == '__main__':
 
 
                 X_train, X_test, Y_train, Y_test = X[train_index], X[test_index], Y[train_index], Y[test_index]
+                # print(Y_train[np.where(Y_test==0)].size/len(Y_test))
+
                 Y_train, Y_test = map(lambda x: to_categorical(np.ravel(x)), (Y_train, Y_test))
 
-  
+                # X_train, X_val, Y_train, Y_val = train_test_split(X_train, Y_train, test_size=0.1, random_state=42)
                 if args.partial_type=='uniform':
-                    partial_label_train, avgC = partialize(Y_train, p=prob) # generation of candidate labels obeys uniform distribution, value of p can be 0.2,0.4,0.6,0.8,0.9,0.95 
+                    partial_label_train, avgC = partialize(Y_train, p=prob) # value of p can be 0.4,0.6,0.8
 
                 elif args.partial_type=='emotion':
-                    partial_label_train, avgC = partialize_emotion(Y_train, Y[train_index]) # generation of candidate labels depends on emotion similarities
+                    partial_label_train, avgC = partialize_emotion(Y_train, Y[train_index])
                 else:
                     break
+                # partial_label_val,   avgC = partialize(Y_val,   p=prob_arr[prob_ind]) # value of p can be 0.4,0.6,0.8
                 partial_label_test,  avgC = partialize(Y_test,  p=0.0) # value of p can be 0.4,0.6,0.8
 
                 data_train, data_test  = np.expand_dims(X_train, axis=1), np.expand_dims(X_test, axis=1)
                 label_train, label_test = Y_train, Y_test
 
-                # data loader
+
                 train_dataset  = load_augmented_dataset_to_device(data_train, label_train, partial_label_train, batch_size=8, shuffle_flag=True,  augmentation_flag=True)
                 test_dataset   = load_augmented_dataset_to_device(data_test,  label_test,  partial_label_test,  batch_size=8, shuffle_flag=False, augmentation_flag=False)
 
@@ -293,28 +305,12 @@ if __name__ == '__main__':
 
                 torch.cuda.empty_cache()
 
-        # save results
         if args.partial_type=='uniform':
             np.savetxt(os.path.join(directory, "prob_{}.csv".format(prob)),     acc_array , delimiter=",")
         elif args.partial_type=='emotion':
             np.savetxt(os.path.join(directory, "gamma.csv"),                    acc_array , delimiter=",")
         else:
             raise Exception('Need to choose the parital label generation method')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
