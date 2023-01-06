@@ -39,7 +39,7 @@ You are required to enter the int, strings, or boolean values accoroding to the 
     src="/screenshot.png"
   >
 </p>
-In the bash fash, please decide whether to use the 'wait' command after each python exexcution command according to the CPU and GPU resource you have. If you have mutiple GPU and many CPU cores, you can choose to remove 'wait' and assign GPU device id to CUDA_VISIBLE_DEVICES=id for efficient computation. 
+In the bash fash, please choose whether to use the 'wait' command after each python exexcution command according to the CPU and GPU resource you have. If you have mutiple GPU and many CPU cores, you can choose to remove 'wait' and assign GPU device id to CUDA_VISIBLE_DEVICES=id for efficient computation. If your computation source is limited, keep the bash file as it is.
 
 
  ## Document Description
