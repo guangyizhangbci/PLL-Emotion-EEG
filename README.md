@@ -30,6 +30,14 @@ pip3 install -r ./requirements.txt
 
 We also provide bash file for runing all the partial label learning experiments.
 
+<p align="center">
+  <img 
+    width="900"
+    height="310"
+    src="/screenshot.png"
+  >
+</p>
+
  ## Document Description
  
 - `\parsing`: argparse module including argument specifications for all partial label learning methods. 
