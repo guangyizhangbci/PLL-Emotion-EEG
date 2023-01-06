@@ -39,7 +39,7 @@ Enter the values specified in the terminal hint. These may include integers, str
     src="/screenshot.png"
   >
 </p>
-In the bash fash, please choose whether to use the 'wait' command after each python exexcution command according to the CPU and GPU resource you have. If you have mutiple GPU and many CPU cores, you can choose to remove 'wait' and assign GPU device id to CUDA_VISIBLE_DEVICES=id for efficient computation. If your computation source is limited, keep the bash file as it is.
+In the bash script, decide whether to use the 'wait' command after each python execution command based on your available CPU and GPU resources. If you have multiple GPUs and many CPU cores, you can omit 'wait' and assign a GPU device ID to the environment variable 'CUDA_VISIBLE_DEVICES' for more efficient computation. If you have limited computational resources, leave the bash file as is.
 
 
  ## Document Description
