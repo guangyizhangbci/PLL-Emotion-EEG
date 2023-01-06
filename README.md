@@ -30,7 +30,7 @@ pip3 install -r ./requirements.txt
 ```
 bash ./run.sh
 ```
-You are required to enter the int, strings, or boolean values accoroding to the hint shown in the terminal. Specfically, enter one of 'DNPL', 'PRODEN', 'CAVL', 'CR', 'LW', and 'PiCO' for method name. Enter 'true' or 'false' to determine if using label disambiguation. Enter 'uniform' or 'emotion' for partial label type. Enter 'sigmoid' or 'cross_entropy' for loss name, and '0.0', '1.0, or '2.0' for beta values used in the LW method. Enter 'true' or 'false' to determine if contrastive learning should be used in the PiCO method. An example is shown as in the following screenshot.
+Enter the values specified in the terminal hint. These may include integers, strings, or boolean values. For the method name, choose one of 'DNPL', 'PRODEN', 'CAVL', 'CR', 'LW', or 'PiCO'. For label disambiguation, enter 'true' or 'false'. For partial label type, enter 'uniform' or 'emotion'. For loss name, enter 'sigmoid' or 'cross_entropy'. For beta values in the LW method, enter '0.0', '1.0', or '2.0'. For the PiCO method, enter 'true' or 'false' to determine whether contrastive learning should be used. An example is shown in the screenshot.
 
 <p align="center">
   <img 
