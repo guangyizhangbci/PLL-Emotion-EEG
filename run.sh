@@ -65,29 +65,13 @@ then
       wait
     fi
   done
-
+    
+else
+  echo "Error!"
+  exit
+  
+  
 fi
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -97,8 +81,3 @@ fi
 
   #
 
-else
-  echo "Error!"
-  exit
-
-fi
