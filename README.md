@@ -30,7 +30,7 @@ pip3 install -r ./requirements.txt
 ```
 bash ./run.sh
 ```
-You are required to enter the int, strings, or boolean values accoroding to the hint shown in the terminal. Specfically, enter one of `DNPL', `PRODEN', `CAVL', `CR', `LW', and `PiCO' for method name. Enter`true' or `false' to determine if using label disambiguation. Enter `uniform' or `emotion' for partial label type. Enter `sigmoid' or `cross_entropy' for loss name, and '0.0', '1.0, or '2.0' for beta values used in LW method. Enter `true' or `false' to determine if contrastive learning should be used in PiCO method. An example is shown as in the following screenshot.
+You are required to enter the int, strings, or boolean values accoroding to the hint shown in the terminal. Specfically, enter one of 'DNPL', 'PRODEN', 'CAVL', 'CR', 'LW', and 'PiCO' for method name. Enter 'true' or 'false' to determine if using label disambiguation. Enter 'uniform' or 'emotion' for partial label type. Enter 'sigmoid' or 'cross_entropy' for loss name, and '0.0', '1.0, or '2.0' for beta values used in the LW method. Enter 'true' or 'false' to determine if contrastive learning should be used in the PiCO method. An example is shown as in the following screenshot.
 
 <p align="center">
   <img 
@@ -39,7 +39,7 @@ You are required to enter the int, strings, or boolean values accoroding to the 
     src="/screenshot.png"
   >
 </p>
-In the bash fash, please decide whether to use the 'wait' command after each python exexcution command according to the CPU and GPU resource you have. If you have mutiple GPU and many CPU cores, you can choose to remove `wait' and assign GPU device id to CUDA_VISIBLE_DEVICES=id for efficient computation. 
+In the bash fash, please decide whether to use the 'wait' command after each python exexcution command according to the CPU and GPU resource you have. If you have mutiple GPU and many CPU cores, you can choose to remove 'wait' and assign GPU device id to CUDA_VISIBLE_DEVICES=id for efficient computation. 
 
 
  ## Document Description
