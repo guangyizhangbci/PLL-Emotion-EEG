@@ -38,7 +38,6 @@ We also provide bash file for runing all the partial label learning experiments.
 - `\main`: implementation of experiment set-up for all recent state-of-the-art partial label learning methods, [DNPL](https://ieeexplore.ieee.org/document/9414927), [PRODEN](https://dl.acm.org/doi/10.5555/3524938.3525541), [CAVL](https://openreview.net/forum?id=qqdXHUGec9h), [LW](http://proceedings.mlr.press/v139/wen21a.html), [CR](https://proceedings.mlr.press/v162/wu22l.html), and [PiCO](https://openreview.net/forum?id=EhYjZy6e1gJ). In the paper, we investigated majority of the methods with and without label disambiguation. To make code easier for reader to understand, we place the label disambiguation process in the 'confidence_update' function in the class of each method. Therefore, we can run the experiments by simply adding '--use-confidence' in the command line for enabling the label disambiguation process. Method DNPL is the only exception which does not employ label disambiguation.  
  - `\polar_coordinate`: generation of simlarities among five emotions based on the emotion wheel.
  - `\utils`: model paramters initialization, candidate label generation methods based on classical (uniform distribution) and real-world (emotion similarity) settings, customized PyTorch data loader, as well as contrastive learning loss functions. 
-  - `\bash`:
- 
+
  
  
