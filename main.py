@@ -1,5 +1,5 @@
 """
-Created on Thu May 14 15:32:30 2022
+Created on Sat May 14 15:01:14 2022
 
 @author: patrick
 """
@@ -9,7 +9,6 @@ import math
 import random
 from math import log, e
 from tqdm import tqdm
-from sklearn.model_selection import KFold
 from scipy.stats import *
 import copy
 import time
@@ -18,24 +17,16 @@ import torch.backends.cudnn as cudnn
 import torch.optim as optim
 import torch.utils.data
 from torch.autograd import Variable
-import matplotlib.animation as animation
-from torch.autograd import Variable
 import os,sys,inspect
-from sklearn.model_selection import train_test_split
-from sklearn.model_selection import LeaveOneOut, KFold
+from sklearn.model_selection import train_test_split, LeaveOneOut, KFold
 from sklearn.preprocessing import MinMaxScaler
-import utils
-import math
 import argparse
 from train_func import *
 from utils import *
-currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-parentdir = os.path.dirname(currentdir)
-sys.path.insert(0,parentdir)
-from simple_autoencoder import conv_EEG, conv_EEG_pico, PiCO
+from backbone_models import conv_EEG, conv_EEG_pico, PiCO
 
-data_addr  = './SEED_V/EEG/de_{}_{}.npy'      # subject_No, Fold_No
-label_addr = './SEED_V/EEG/label_{}_{}.npy'   # subject_No, Fold_No
+data_addr  = '/media/patrick/DATA/SEED_V/EEG/de_{}_{}.npy'      # subject_No, Fold_No
+label_addr = '/media/patrick/DATA/SEED_V/EEG/label_{}_{}.npy'   # subject_No, Fold_No
 
 
 import parsing
@@ -311,6 +302,21 @@ if __name__ == '__main__':
             np.savetxt(os.path.join(directory, "gamma.csv"),                    acc_array , delimiter=",")
         else:
             raise Exception('Need to choose the parital label generation method')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
