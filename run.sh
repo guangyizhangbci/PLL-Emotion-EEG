@@ -44,6 +44,22 @@ then
     fi
   done
 
+
+elif [[ $method_name == "CR" ]]
+then
+  for i in 1 2 3 4 5
+  do
+    if [[ $confidence_boolean == true ]]
+    then
+      python3 ./SEED_V_code/PLL/main.py --optimizer 'sgd' --lr 0.01 --partial-type $partial_type_name --method $method_name --use-scheduler --use-confidence --c-weight 1 --c-weight-w 1 --c-weight-s 1 --run-idx $i
+      wait
+    else
+      python3 ./SEED_V_code/PLL/main.py --optimizer 'sgd' --lr 0.01 --partial-type $partial_type_name --method $method_name --use-scheduler --c-weight 1 --c-weight-w 1 --c-weight-s 1 --run-idx $i
+      wait
+    fi
+  done
+
+
 elif [[ $method_name == "PiCO" ]]
 then
   read -p "Enter if use contrastive learning (boolean): " contrastive_boolean
@@ -65,12 +81,12 @@ then
       wait
     fi
   done
-    
+
+
 else
   echo "Error!"
   exit
-  
-  
+
 fi
 
 
@@ -79,5 +95,16 @@ fi
 
 
 
-  #
 
+
+
+
+
+
+
+
+
+
+
+
+  #
