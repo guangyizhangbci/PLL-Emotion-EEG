@@ -9,7 +9,7 @@ if [[ $method_name == "DNPL" ]]
 then
   for i in 1 2 3 4 5
   do
-    python3 /media/patrick/OS/SEED_V_code/PLL/main.py --optimizer 'sgd' --lr 0.01 --partial-type $partial_type_name --method $method_name --run-idx $i
+    python3 ./SEED_V_code/PLL/main.py --optimizer 'sgd' --lr 0.01 --partial-type $partial_type_name --method $method_name --run-idx $i
     wait
   done
 
@@ -19,10 +19,10 @@ then
   do
     if [[ $confidence_boolean == true ]]
     then
-      python3 /media/patrick/OS/SEED_V_code/PLL/main.py --optimizer 'sgd' --lr 0.01 --partial-type $partial_type_name --method $method_name --use-scheduler --use-confidence --run-idx $i
+      python3 ./SEED_V_code/PLL/main.py --optimizer 'sgd' --lr 0.01 --partial-type $partial_type_name --method $method_name --use-scheduler --use-confidence --run-idx $i
       wait
     else
-      python3 /media/patrick/OS/SEED_V_code/PLL/main.py --optimizer 'sgd' --lr 0.01 --partial-type $partial_type_name --method $method_name --use-scheduler --run-idx $i
+      python3 ./SEED_V_code/PLL/main.py --optimizer 'sgd' --lr 0.01 --partial-type $partial_type_name --method $method_name --use-scheduler --run-idx $i
       wait
     fi
   done
@@ -36,10 +36,10 @@ then
   do
     if [[ $confidence_boolean == true ]]
     then
-      python3 /media/patrick/OS/SEED_V_code/PLL/main.py --optimizer 'sgd' --lr 0.01 --partial-type $partial_type_name --method $method_name --use-scheduler --use-confidence --loss $loss_name --beta $beta_value --run-idx $i
+      python3 ./SEED_V_code/PLL/main.py --optimizer 'sgd' --lr 0.01 --partial-type $partial_type_name --method $method_name --use-scheduler --use-confidence --loss $loss_name --beta $beta_value --run-idx $i
       wait
     else
-      python3 /media/patrick/OS/SEED_V_code/PLL/main.py --optimizer 'sgd' --lr 0.01 --partial-type $partial_type_name --method $method_name --use-scheduler --loss $loss_name --beta $beta_value --run-idx $i
+      python3 ./SEED_V_code/PLL/main.py --optimizer 'sgd' --lr 0.01 --partial-type $partial_type_name --method $method_name --use-scheduler --loss $loss_name --beta $beta_value --run-idx $i
       wait
     fi
   done
@@ -58,10 +58,10 @@ then
   do
     if [[ $confidence_boolean == true ]]
     then
-      python3 /media/patrick/OS/SEED_V_code/PLL/main.py --optimizer 'sgd' --lr 0.01 --partial-type $partial_type_name --method $method_name --use-scheduler --use-confidence --gamma $gamme_value --run-idx $i
+      python3 ./SEED_V_code/PLL/main.py --optimizer 'sgd' --lr 0.01 --partial-type $partial_type_name --method $method_name --use-scheduler --use-confidence --gamma $gamme_value --run-idx $i
       wait
     else
-      python3 /media/patrick/OS/SEED_V_code/PLL/main.py --optimizer 'sgd' --lr 0.01 --partial-type $partial_type_name --method $method_name --use-scheduler --gamma $gamme_value --run-idx $i
+      python3 ./SEED_V_code/PLL/main.py --optimizer 'sgd' --lr 0.01 --partial-type $partial_type_name --method $method_name --use-scheduler --gamma $gamme_value --run-idx $i
       wait
     fi
   done
