@@ -244,6 +244,7 @@ class T_CR():
 
     def confidence_update(self, index, confidence, y_pred_aug0_probas, y_pred_aug1_probas, y_pred_aug2_probas, part_y):
 
+        part_y[part_y>0]=1
         y_pred_aug0_probas, y_pred_aug1_probas, y_pred_aug2_probas = map(lambda x: x.detach(), (y_pred_aug0_probas, y_pred_aug1_probas, y_pred_aug2_probas))
 
 
@@ -261,7 +262,8 @@ class T_CR():
 
 
     def train_step(self, index, confidence, input, input_w, input_s, part_y, model, optimizer, epoch):
-
+        
+        part_y[part_y>0]=1
         consistency_criterion = nn.KLDivLoss(reduction='batchmean').to(device)
 
         optimizer.zero_grad()
