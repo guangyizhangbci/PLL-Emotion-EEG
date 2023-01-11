@@ -279,12 +279,8 @@ class T_CR():
 
         lam = min((epoch / args.epochs) * args.lam, args.lam)
 
-        if args.use_confidence==True:
-            loss = super_loss + lam*(args.c_weight * consistency_loss + args.c_weight_w * consistency_loss_weak + args.c_weight_s * consistency_loss_strong)
-        else:
-            loss = super_loss
-
-
+        loss = super_loss + lam*(args.c_weight * consistency_loss + args.c_weight_w * consistency_loss_weak + args.c_weight_s * consistency_loss_strong)
+  
 
         loss.backward()
         optimizer.step()
