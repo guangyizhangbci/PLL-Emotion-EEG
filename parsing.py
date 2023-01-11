@@ -20,7 +20,7 @@ def create_parser():
     parser.add_argument('--use-scheduler',  default=False,  action="store_true",    help='learning rate scheduler')
     parser.add_argument('--run-idx',        default=1,      type=int,               help='repeat with indepedent random seed')
     parser.add_argument('--use-confidence', default=False,  action="store_true",    help='label confidence ones initialization')
-    parser.add_argument('--partial-type',   default='uniform', type=str,           help='partial label type')
+    parser.add_argument('--partial-type',   default='uniform', type=str,            help='partial label type')
 
     # LW
     parser.add_argument('--beta',           default=0.0,    type = float,           help='weight of loss applied on non-candiate labels')
