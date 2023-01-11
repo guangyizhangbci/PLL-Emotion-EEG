@@ -53,3 +53,19 @@ In the bash script, decide whether to use the 'wait' command after each python e
 
  
  
+If you find this material useful, please cite the following article:
+
+## Citation
+
+
+
+
+## Contact
+The sources of randomness are controlled, ensuring that all results presented in the paper can be replicated using the codes provided in this repository. Should you have any questions, please feel free to contact me at [guangyi.zhang@queensu.ca](mailto:guangyi.zhang@queensu.ca) or [guangyi.zhang@utoronto.ca](mailto:guangyi.zhang@utoronto.ca).
+
+
+
+<!-- <img src="/doc/architecture.pdf" width="400" height="200">
+ -->
+<a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fguangyizhangbci%2FEEG_Riemannian%2F&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
+
