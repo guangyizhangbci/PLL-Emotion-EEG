@@ -277,7 +277,10 @@ class T_CR():
         super_loss = -torch.mean(torch.sum(torch.log(1.0000001 - F.softmax(output, dim=1)) * (1 - part_y), dim=1))
 
 
-        lam = min((epoch / args.epochs) * args.lam, args.lam)
+        if args.use_confidence==True:
+            lam = min((epoch / args.epochs) * args.lam, args.lam)
+        else:
+            lam = 0
 
         loss = super_loss + lam*(args.c_weight * consistency_loss + args.c_weight_w * consistency_loss_weak + args.c_weight_s * consistency_loss_strong)
   
