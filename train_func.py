@@ -18,7 +18,7 @@ device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 
 '''
-***On the Power of Deep but Naive Partial Label Learning (DNPL), ICASSP 21***
+***The code below is based on "On the Power of Deep but Naive Partial Label Learning (DNPL)", ICASSP 21***
 '''
 class T_DNPL():
     def __init__(self):
@@ -45,7 +45,7 @@ class T_DNPL():
 
 
 '''
-***Progressive Identification of True Labels for Partial-Label Learning (PRODEN), ICML 20***
+***The code below is based on "Progressive Identification of True Labels for Partial-Label Learning (PRODEN)", ICML 20***
 '''
 
 class T_PRODEN():
@@ -83,7 +83,7 @@ class T_PRODEN():
 
 
 '''
-***Exploiting Class Activation Value for Partial-Label Learning (CAVL), ICLR 22***
+***The code below is based on "Exploiting Class Activation Value for Partial-Label Learning (CAVL)", ICLR 22***
 '''
 
 class T_CAVL():
@@ -120,7 +120,7 @@ class T_CAVL():
 
 
 '''
-***Leveraged Weighted Loss for Partial Label Learning (LW), ICML 21***
+***The code below is based on "Leveraged Weighted Loss for Partial Label Learning (LW)", ICML 21***
 '''
 
 class T_LW():
@@ -234,7 +234,7 @@ class T_LW():
 
 
 '''
-***Revisiting Consistency Regularization for Deep Partial Label Learning (CR), ICML 22***
+***The code below is based on "Revisiting Consistency Regularization for Deep Partial Label Learning (CR)", ICML 22***
 '''
 
 class T_CR():
@@ -296,7 +296,7 @@ class T_CR():
 
 
 '''
-***PiCO: Contrastive Label Disambiguation for Partial Label Learning (PiCO), ICLR 22***
+***The code below is based on "PiCO: Contrastive Label Disambiguation for Partial Label Learning (PiCO)", ICLR 22***
 '''
 
 class T_PiCO():
