@@ -34,7 +34,7 @@ Enter the values specified in the terminal hint. These may include integers, str
 
 <p align="center">
   <img 
-    width="700"
+    width="800"
     height="310"
     src="/screenshot.png"
   >
