@@ -1,5 +1,5 @@
 # Partial Label Learning for Emotion Recognition from EEG
-This is the implementation of [Partial Label Learning for Emotion Recognition from EEG](arxiv address) in PyTorch (Version 1.11.0).
+This is the implementation of [Partial Label Learning for Emotion Recognition from EEG](https://arxiv.org/pdf/2302.13170.pdf) in PyTorch (Version 1.11.0).
 <p align="center">
   <img 
     width="600"
@@ -57,7 +57,12 @@ If you find this material useful, please cite the following article:
 
 ## Citation
 
-
+@article{zhang2023partial,
+  title={Partial Label Learning for Emotion Recognition from EEG},
+  author={Zhang, Guangyi and Etemad, Ali},
+  journal={arXiv preprint arXiv:2302.13170},
+  year={2023}
+}
 
 
 ## Contact
