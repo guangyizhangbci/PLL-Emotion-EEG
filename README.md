@@ -64,7 +64,6 @@ If you find this material useful, please cite the following article:
   journal={arXiv preprint arXiv:2302.13170},
   year={2023}
 }
-
 ```
 
 ## Contact
