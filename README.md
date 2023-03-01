@@ -57,6 +57,7 @@ If you find this material useful, please cite the following article:
 
 ## Citation
 
+```
 @article{zhang2023partial,
   title={Partial Label Learning for Emotion Recognition from EEG},
   author={Zhang, Guangyi and Etemad, Ali},
@@ -64,6 +65,7 @@ If you find this material useful, please cite the following article:
   year={2023}
 }
 
+```
 
 ## Contact
 The sources of randomness are controlled, ensuring that all results presented in the paper can be replicated using the codes provided in this repository. Should you have any questions, please feel free to contact me at [guangyi.zhang@queensu.ca](mailto:guangyi.zhang@queensu.ca).
