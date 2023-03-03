@@ -67,7 +67,7 @@ If you find this material useful, please cite the following article:
 ```
 
 ## Contact
-The sources of randomness are controlled, ensuring that all results presented in the paper can be replicated using the codes provided in this repository. Should you have any questions, please feel free to contact me at [guangyi.zhang@queensu.ca](mailto:guangyi.zhang@queensu.ca).
+The sources of randomness are controlled, ensuring that all results presented in the paper can be replicated using the codes provided in this repository. Should you have any questions, please feel free to contact me at [guangyi.zhang@queensu.ca](mailto:guangyi.zhang@queensu.ca) or [guangyi.zhang@utoronto.ca](mailto:guangyi.zhang@utoronto.ca).
 
 
 
