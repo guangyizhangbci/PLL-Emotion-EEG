@@ -7,7 +7,10 @@ This is the implementation of [Partial Label Learning for Emotion Recognition fr
     src="/framework.jpg"
   >
 </p>
-
+# Install
+```
+pip install eeg-pll==1.10.0
+```
 
 
 This repository contains the source code of our paper, using a large publicly avaiable dataset, [SEED-V](https://bcmi.sjtu.edu.cn/home/seed/seed-v.html). 16 participants were involved in experiments with videos as emotion stimuli (five emotions: happy/sad/disgust/neutral/fear). 62 EEG recordings were collected with a sampling frequency of 1000Hz.
