@@ -7,7 +7,9 @@ This is the implementation of [Partial Label Learning for Emotion Recognition fr
     src="/framework.jpg"
   >
 </p>
+
 # Install
+
 ```
 pip install eeg-pll==1.10.0
 ```
