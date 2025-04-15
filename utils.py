@@ -1,8 +1,3 @@
-"""
-Created on Sat May 14 13:28:07 2022
-
-@author: patrick
-"""
 import numpy as np
 import copy
 import torch.nn as nn
@@ -11,8 +6,6 @@ import torch.nn.functional as F
 from torch.autograd import Variable
 from torch.utils.data import Dataset
 import math
-
-
 def Average(lst):
     return sum(lst) / len(lst)
 
@@ -47,28 +40,65 @@ class WeightInit(object):
 
 
 
-def emotion_similarity():  # emotion similarity scores generation
+def emotion_similarity(emotion_delta):
 
-    fear = [1, 117]
     disgust = [1, 153]
+    fear = [1, 117]
     sad = [1, 198]
     neutral = [0, 0]
     happy = [1, 18]
 
-
+    norm_dist = np.zeros((5, 5))
     matrix = np.eye(5)
 
-    list = [fear, disgust, sad, neutral, happy]
+    list = [disgust, fear, sad, neutral, happy]
 
     for i in range(5):
         for j in range(5):
-            matrix[i,j] = 1 - math.sqrt(list[i][0]**2 + list[j][0]**2 -2*list[i][0]*list[j][0]*math.cos(math.radians(list[i][1])-math.radians(list[j][1]))) / 2
+            # matrix[i,j] = 1 - math.sqrt(list[i][0]**2 + list[j][0]**2 -2*list[i][0]*list[j][0]*math.cos(math.radians(list[i][1])-math.radians(list[j][1]))) / 2
+            norm_dist[i,j] = math.sqrt(list[i][0]**2 + list[j][0]**2 -2*list[i][0]*list[j][0]*math.cos(math.radians(list[i][1])-math.radians(list[j][1])))/2
+            # Apply scaling factor delta to increase ambiguity (make distances smaller)
+            scaled_dist = norm_dist[i, j] ** emotion_delta
+
+            matrix[i, j] = 1 - scaled_dist    
+
 
     return matrix
 
 
+def average_emotion_ambiguity(emotion_delta):
+    
+    disgust = [1, 153]
+    fear = [1, 117]
+    sad = [1, 198]
+    neutral = [0, 0]
+    happy = [1, 18]
 
-def partialize(y, p): # generation of candidate labels based on the uniform distribution
+    norm_dist = np.zeros((5, 5))
+    matrix = np.eye(5)
+
+    list = [disgust, fear, sad, neutral, happy]
+
+    for i in range(5):
+        for j in range(5):
+            # matrix[i,j] = 1 - math.sqrt(list[i][0]**2 + list[j][0]**2 -2*list[i][0]*list[j][0]*math.cos(math.radians(list[i][1])-math.radians(list[j][1]))) / 2
+            norm_dist[i,j] = math.sqrt(list[i][0]**2 + list[j][0]**2 -2*list[i][0]*list[j][0]*math.cos(math.radians(list[i][1])-math.radians(list[j][1])))/2
+            # Apply scaling factor delta to increase ambiguity (make distances smaller)
+            scaled_dist = norm_dist[i, j] ** emotion_delta
+
+            matrix[i, j] = 1 - scaled_dist    
+
+    matrix = np.array(matrix)
+    # Get only the lower triangular part below the diagonal (k=-1)
+    lower_bound_values = matrix[np.tril_indices(len(matrix), k=-1)]
+
+    average_value = np.mean(lower_bound_values)
+
+    return average_value
+
+
+
+def partialize(y, p):
     new_y = copy.deepcopy(y).astype(float)
     n, c = y.shape[0], y.shape[1]
     avgC = 0
@@ -110,13 +140,13 @@ def partialize_pair(y, y0, p):
 
 
 
-def partialize_emotion(y, y0): # generation of candidate labels based on emotion similarities
+def partialize_emotion(y, y0, emotion_delta):
     new_y = copy.deepcopy(y).astype(float)
     n, c = y.shape[0], y.shape[1]
 
 
     avgC = 0
-    matrix = emotion_similarity()
+    matrix = emotion_similarity(emotion_delta)
 
     for i in range(n):
         row = new_y[i, :]
@@ -146,7 +176,7 @@ def add_gaussian_noise_torch(input, std):
 
     return input + noise
 
-class CustomEEGDataset(Dataset): #customize dataset, containing data augmention which is required in methods CR and PiCO
+class CustomEEGDataset(Dataset):
     def __init__(self, image, labels, partial_labels, augmentation=True):
         self.data = image
         self.labels  = labels
@@ -197,8 +227,7 @@ def load_augmented_dataset_to_device(data, label, partial_label, batch_size, shu
 
 
 
-class partial_loss(nn.Module): 
-    """The supervised loss of PiCO with and without prototype-based label disambiguation"""
+class partial_loss(nn.Module):
     def __init__(self, confidence, conf_ema_m=0.99):
         super().__init__()
         self.confidence = confidence
@@ -229,7 +258,7 @@ class partial_loss(nn.Module):
 
 
 
-class SupConLoss(nn.Module): # Contrastive Loss used in PiCO
+class SupConLoss(nn.Module):
     """Following Supervised Contrastive Learning:
         https://arxiv.org/pdf/2004.11362.pdf."""
     def __init__(self, temperature=0.07, base_temperature=0.07):
@@ -311,5 +340,28 @@ def adjust_learning_rate(args, optimizer, epoch):
     for param_group in optimizer.param_groups:
         param_group['lr'] = lr
 
+
+
+
+
+def interleave_offsets(batch, nu):
+    groups = [batch // (nu + 1)] * (nu + 1)
+    for x in range(batch - sum(groups)):
+        groups[-x - 1] += 1
+    offsets = [0]
+    for g in groups:
+        offsets.append(offsets[-1] + g)
+    assert offsets[-1] == batch
+    return offsets
+
+
+def interleave(xy, batch):
+    nu = len(xy) - 1
+    offsets = interleave_offsets(batch, nu)
+    xy = [[v[offsets[p]:offsets[p + 1]] for p in range(nu + 1)] for v in xy]
+
+    for i in range(1, nu + 1):
+        xy[0][i], xy[i][i] = xy[i][i], xy[0][i]
+    return [torch.cat(v, dim=0) for v in xy]
 
 #
