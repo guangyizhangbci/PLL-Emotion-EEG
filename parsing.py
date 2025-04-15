@@ -1,9 +1,3 @@
-"""
-Created on Sat Oct 22 19:00:26 2022
-
-@author: patrick
-"""
-
 import argparse
 
 
@@ -20,7 +14,7 @@ def create_parser():
     parser.add_argument('--use-scheduler',  default=False,  action="store_true",    help='learning rate scheduler')
     parser.add_argument('--run-idx',        default=1,      type=int,               help='repeat with indepedent random seed')
     parser.add_argument('--use-confidence', default=False,  action="store_true",    help='label confidence ones initialization')
-    parser.add_argument('--partial-type',   default='uniform', type=str,            help='partial label type')
+    parser.add_argument('--partial-type',   default='uniform', type=str,           help='partial label type')
 
     # LW
     parser.add_argument('--beta',           default=0.0,    type = float,           help='weight of loss applied on non-candiate labels')
@@ -48,4 +42,9 @@ def create_parser():
     parser.add_argument('--conf-ema-range', default='0.95,0.8', type=str,           help='pseudo target updating coefficient (phi)')
     parser.add_argument('-lr_decay_epochs', default='700,800,900', type=str,        help='where to decay lr, can be a list')
 
+
+    # Emotion setting
+    parser.add_argument('--emotion-delta',  default=0.0, type=float,  help='scale the simlarity score, in order to compare with classical labels generation in terms of ambiguity')
+    
+    
     return parser
