@@ -64,11 +64,12 @@ If you find this material useful, please cite the following article:
 
 ```
 @article{zhang2023partial,
-  title={Partial Label Learning for Emotion Recognition from EEG},
   author={Zhang, Guangyi and Etemad, Ali},
-  journal={arXiv preprint arXiv:2302.13170},
-  year={2023}
-}
+  journal={IEEE Transactions on Affective Computing}, 
+  title={Partial Label Learning for Emotion Recognition from EEG}, 
+  year={2025},
+  pages={1-15},
+  doi={10.1109/TAFFC.2025.3562027}}
 ```
 
 ## Contact
